@@ -1,0 +1,14 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment variables — NEVER commit secrets!
+.env
+.env.local
+
+# Editor folders
+.vscode/
+.idea/
+
+# Docker
+*.log

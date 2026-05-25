@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  web:
+    # Build image from the Dockerfile in the current folder
+    build: .
+
+    # Map port 8080 on your laptop → port 80 inside the container
+    # So you visit http://localhost:8080 to see the site
+    ports:
+      - "8080:80"
+
+    # If the container crashes, restart it automatically
+    restart: unless-stopped
+
+    # Give the container a readable name
+    container_name: apex-sports-complex
