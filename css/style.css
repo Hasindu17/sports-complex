@@ -532,3 +532,72 @@ img { max-width: 100%; }
   .footer-inner { grid-template-columns: 1fr; }
   .pricing-row { flex-direction: column; }
 }
+/* ===== MEMBERSHIP ===== */
+.membership-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+.membership-card {
+  background: var(--dark3);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  position: relative;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.membership-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255,255,255,0.15);
+}
+.membership-card--featured {
+  border-color: var(--accent);
+  background: linear-gradient(135deg, rgba(0,229,160,0.05), var(--dark3));
+}
+.mem-badge {
+  position: absolute;
+  top: -12px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: #080c10;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.25rem 1rem;
+  border-radius: 20px;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+.mem-tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+.mem-price {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  line-height: 1;
+}
+.mem-price span {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+.mem-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.mem-features li {
+  font-size: 0.88rem;
+  color: #c5cfd9;
+  line-height: 1.5;
+}
+@media (max-width: 600px) {
+  .membership-grid { grid-template-columns: 1fr; }
+}
