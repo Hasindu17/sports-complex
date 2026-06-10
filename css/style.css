@@ -725,3 +725,24 @@ img { max-width: 100%; }
 .calendar {
   width: 100%;
 }
+
+/* ===== SPORT IMAGES ===== */
+.sport-art-img-wrap {
+  width: 100%;
+  height: 250px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+.sport-art-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
+}
+.sport-art-img-wrap:hover .sport-art-img {
+  transform: scale(1.04);
+}

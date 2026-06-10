@@ -171,7 +171,7 @@ resource "azurerm_linux_virtual_machine" "sports" {
   # RSA key — Azure requires RSA (not ed25519)
   admin_ssh_key {
     username   = var.admin_username
-    public_key = file("C:/Users/Admin/.ssh/id_rsa_azure.pub")
+    public_key = var.ssh_public_key != "" ? var.ssh_public_key : file(var.ssh_public_key_path)
   }
 
   os_disk {
@@ -188,18 +188,65 @@ resource "azurerm_linux_virtual_machine" "sports" {
   }
 
   # Startup script — runs automatically when VM boots!
-  # Installs Docker and deploys your sports complex
+  # Installs Docker + Docker Compose, and deploys the full app stack
   custom_data = base64encode(<<-EOF
     #!/bin/bash
+    # Update and install dependencies
     apt-get update -y
-    apt-get install -y docker.io
+    apt-get install -y docker.io docker-compose
     systemctl enable docker
     systemctl start docker
-    docker run -d \
-  --name apex-sports-complex \
-  --restart unless-stopped \
-  -p 80:80 \
-  hasindu2001/sports-complex:latest
+
+    # Prepare application stack
+    mkdir -p /opt/sports-complex
+    cd /opt/sports-complex
+
+    # Write docker-compose.yml
+    cat <<'COMPOSE' > docker-compose.yml
+    version: '3.8'
+    services:
+      db:
+        image: postgres:17
+        container_name: sports-complex-db
+        restart: unless-stopped
+        environment:
+          POSTGRES_DB:       sports_complex
+          POSTGRES_USER:     sports_user
+          POSTGRES_PASSWORD: sports_pass
+        volumes:
+          - postgres_data:/var/lib/postgresql/data
+        healthcheck:
+          test: ["CMD-SHELL", "pg_isready -U sports_user -d sports_complex"]
+          interval: 10s
+          timeout: 5s
+          retries: 5
+
+      api:
+        image: hasindu2001/sports-complex-api:latest
+        container_name: sports-complex-api
+        restart: unless-stopped
+        environment:
+          DATABASE_URL: postgresql://sports_user:sports_pass@db:5432/sports_complex
+        depends_on:
+          db:
+            condition: service_healthy
+
+      web:
+        image: hasindu2001/sports-complex:latest
+        container_name: apex-sports-complex
+        restart: unless-stopped
+        ports:
+          - "80:80"
+        depends_on:
+          - api
+
+    volumes:
+      postgres_data:
+        driver: local
+    COMPOSE
+
+    # Run docker-compose
+    docker-compose up -d
     echo "Done!" > /tmp/setup-complete.txt
   EOF
   )
@@ -209,3 +256,5 @@ resource "azurerm_linux_virtual_machine" "sports" {
     ManagedBy = "terraform"
   }
 }
+
+

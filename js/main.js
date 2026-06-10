@@ -22,7 +22,7 @@ const observer = new IntersectionObserver((entries) => {
 reveals.forEach(el => observer.observe(el));
 
 // ── CONFIG ────────────────────────────────────
-const API_URL = 'http://localhost:8000';
+const API_URL = '';
 
 // Fallback slots — backend is the real source of truth
 const ALL_SLOTS = [
@@ -296,10 +296,74 @@ async function handleBooking(e) {
 // ── MODAL ─────────────────────────────────────
 function closeModal() {
   document.getElementById('modal').classList.remove('open');
+  setTimeout(() => {
+    const modalBox = document.querySelector('#modal .modal-box h3');
+    if (modalBox) modalBox.textContent = 'Booking Confirmed!';
+  }, 300);
 }
 document.getElementById('modal').addEventListener('click', function(e) {
   if (e.target === this) closeModal();
 });
+
+// ── MEMBERSHIP MODAL FUNCTIONS ─────────────────
+function openMembershipModal(planName) {
+  const planSelect = document.getElementById('memPlanSelect');
+  if (planSelect) {
+    planSelect.value = planName;
+  }
+  document.getElementById('membershipModal').classList.add('open');
+}
+
+function closeMembershipModal() {
+  document.getElementById('membershipModal').classList.remove('open');
+}
+
+async function handleMembershipRegistration(e) {
+  e.preventDefault();
+  const form = e.target;
+  const submitBtn = form.querySelector('button[type="submit"]');
+
+  submitBtn.textContent = 'Registering…';
+  submitBtn.disabled = true;
+
+  const membershipData = {
+    name:       document.getElementById('memNameInput').value,
+    contact:    document.getElementById('memContactInput').value,
+    plan:       document.getElementById('memPlanSelect').value,
+    start_date: document.getElementById('memStartDateInput').value,
+    notes:      document.getElementById('memNotesInput').value
+  };
+
+  try {
+    const response = await fetch(`${API_URL}/api/memberships`, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(membershipData)
+    });
+    const data = await response.json();
+
+    if (response.ok) {
+      closeMembershipModal();
+      
+      const modalBox = document.querySelector('#modal .modal-box h3');
+      const modalText = document.getElementById('modalSlotSummary');
+      if (modalBox && modalText) {
+        modalBox.textContent = 'Registration Successful!';
+        modalText.innerHTML = `Plan: <span style="color:var(--accent)">${data.plan}</span><br>Start Date: ${data.start_date}`;
+      }
+      
+      document.getElementById('modal').classList.add('open');
+      form.reset();
+    } else {
+      alert('❌ ' + (data.detail || 'Registration failed. Please try again.'));
+    }
+  } catch (err) {
+    alert('⚠️ Cannot connect to registration server. Please check your connection.');
+  } finally {
+    submitBtn.textContent = 'Submit Registration →';
+    submitBtn.disabled    = false;
+  }
+}
 
 // ── INIT ──────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
@@ -309,4 +373,22 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSlotSummaryDisplay();
     loadAvailability();
   });
+
+  // Set up event listeners for membership card buttons
+  document.querySelectorAll('.membership-card .btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const card = btn.closest('.membership-card');
+      const planName = card.querySelector('.mem-tag').textContent.trim();
+      openMembershipModal(planName);
+    });
+  });
+
+  // Close membership modal when clicking overlay
+  const memModal = document.getElementById('membershipModal');
+  if (memModal) {
+    memModal.addEventListener('click', (e) => {
+      if (e.target === memModal) closeMembershipModal();
+    });
+  }
 });

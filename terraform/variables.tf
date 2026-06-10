@@ -21,3 +21,15 @@ variable "admin_username" {
   type        = string
   default     = "azureuser"
 }
+
+variable "ssh_public_key" {
+  description = "Public SSH key content"
+  type        = string
+  default     = ""
+}
+
+variable "ssh_public_key_path" {
+  description = "Path to the public SSH key file"
+  type        = string
+  default     = "~/.ssh/id_rsa.pub"
+}

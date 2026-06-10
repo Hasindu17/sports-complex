@@ -1,17 +1,46 @@
-version: '3.8'
-
 services:
-  web:
-    # Build image from the Dockerfile in the current folder
-    build: .
 
-    # Map port 8080 on your laptop → port 80 inside the container
-    # So you visit http://localhost:8080 to see the site
-    ports:
-       - "8090:80"
-
-    # If the container crashes, restart it automatically
+  db:
+    image: postgres:17
+    container_name: sports-complex-db
     restart: unless-stopped
+    environment:
+      POSTGRES_DB:       sports_complex
+      POSTGRES_USER:     sports_user
+      POSTGRES_PASSWORD: sports_pass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sports_user -d sports_complex"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
-    # Give the container a readable name
+  api:
+    build: ./backend
+    container_name: sports-complex-api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://sports_user:sports_pass@db:5432/sports_complex
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./backend/app:/app/app
+
+  web:
+    build: .
     container_name: apex-sports-complex
+    restart: unless-stopped
+    ports:
+      - "8090:80"
+    depends_on:
+      - api
+
+volumes:
+  postgres_data:
+    driver: local

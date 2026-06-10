@@ -111,16 +111,8 @@
     <div class="container sport-inner">
       <div class="sport-visual cricket-visual">
         <div class="sport-badge">INDOOR CRICKET</div>
-        <div class="sport-art">
-          <div class="pitch-lines">
-            <div class="pl pl1"></div>
-            <div class="pl pl2"></div>
-            <div class="pl pl3"></div>
-            <div class="pitch-stump s1"></div>
-            <div class="pitch-stump s2"></div>
-            <div class="pitch-stump s3"></div>
-            <div class="pitch-ball"></div>
-          </div>
+        <div class="sport-art-img-wrap">
+          <img src="images/cricket_indoor.png" alt="Indoor Cricket Net" class="sport-art-img" />
         </div>
         <div class="sport-tag-grid">
           <span>Net Practice</span>
@@ -183,15 +175,8 @@
       </div>
       <div class="sport-visual badminton-visual">
         <div class="sport-badge">BADMINTON</div>
-        <div class="sport-art">
-          <div class="court-diagram">
-            <div class="court-outer">
-              <div class="court-net"></div>
-              <div class="court-service-left"></div>
-              <div class="court-service-right"></div>
-              <div class="court-shuttle">🏸</div>
-            </div>
-          </div>
+        <div class="sport-art-img-wrap">
+          <img src="images/badminton_indoor.png" alt="Indoor Badminton Courts" class="sport-art-img" />
         </div>
         <div class="sport-tag-grid">
           <span>6 Courts</span>
@@ -208,22 +193,8 @@
     <div class="container sport-inner">
       <div class="sport-visual pool-visual">
         <div class="sport-badge">POOL TABLES</div>
-        <div class="sport-art">
-          <div class="pool-table-art">
-            <div class="pt-felt">
-              <div class="pt-pocket ptl"></div>
-              <div class="pt-pocket ptr"></div>
-              <div class="pt-pocket pbr"></div>
-              <div class="pt-pocket pbl"></div>
-              <div class="pt-pocket pml"></div>
-              <div class="pt-pocket pmr"></div>
-              <div class="pt-ball b1"></div>
-              <div class="pt-ball b2"></div>
-              <div class="pt-ball b3"></div>
-              <div class="pt-ball b4"></div>
-              <div class="pt-ball b5 bcue"></div>
-            </div>
-          </div>
+        <div class="sport-art-img-wrap">
+          <img src="images/pool_indoor.png" alt="Billiards Lounge" class="sport-art-img" />
         </div>
         <div class="sport-tag-grid">
           <span>8 Tables</span>
@@ -286,16 +257,8 @@
       </div>
       <div class="sport-visual swim-visual">
         <div class="sport-badge">SWIMMING</div>
-        <div class="sport-art">
-          <div class="pool-art">
-            <div class="pool-lane" style="--lc:#1d9e75"></div>
-            <div class="pool-lane" style="--lc:#378add"></div>
-            <div class="pool-lane" style="--lc:#1d9e75"></div>
-            <div class="pool-lane" style="--lc:#378add"></div>
-            <div class="pool-lane" style="--lc:#1d9e75"></div>
-            <div class="pool-lane" style="--lc:#378add"></div>
-            <div class="pool-wave"></div>
-          </div>
+        <div class="sport-art-img-wrap">
+          <img src="images/swimming_indoor.png" alt="Indoor Swimming Pool" class="sport-art-img" />
         </div>
         <div class="sport-tag-grid">
           <span>50m Olympic</span>
@@ -495,8 +458,48 @@
       <div class="modal-icon">✅</div>
       <h3>Booking Confirmed!</h3>
       <p id="modalSlotSummary" style="color:var(--accent);font-weight:600;margin-bottom:0.5rem"></p>
-      <p>Our team will contact you within 30 minutes to confirm your booking.</p>
+      <p>Our team will contact you within 30 minutes to confirm your details.</p>
       <button class="btn btn-primary" onclick="closeModal()">Great, Thanks!</button>
+    </div>
+  </div>
+
+  <!-- MEMBERSHIP REGISTRATION MODAL -->
+  <div class="modal-overlay" id="membershipModal">
+    <div class="modal-box">
+      <h3>Register for Membership</h3>
+      <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:1.5rem">
+        Fill out details below. Completion of payment and card issuance is completed physically at the complex lobby.
+      </p>
+      <form id="membershipForm" onsubmit="handleMembershipRegistration(event)">
+        <div class="form-group" style="text-align:left; margin-bottom:1rem">
+          <label style="display:block;margin-bottom:0.3rem;font-size:0.85rem;font-weight:500;color:var(--text-light)">Full Name *</label>
+          <input type="text" id="memNameInput" placeholder="Full Name" required style="width:100%;padding:0.75rem;border-radius:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);outline:none;font-size:0.9rem" />
+        </div>
+        <div class="form-group" style="text-align:left; margin-bottom:1rem">
+          <label style="display:block;margin-bottom:0.3rem;font-size:0.85rem;font-weight:500;color:var(--text-light)">Phone / Email *</label>
+          <input type="text" id="memContactInput" placeholder="Contact number or email address" required style="width:100%;padding:0.75rem;border-radius:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);outline:none;font-size:0.9rem" />
+        </div>
+        <div class="form-group" style="text-align:left; margin-bottom:1rem">
+          <label style="display:block;margin-bottom:0.3rem;font-size:0.85rem;font-weight:500;color:var(--text-light)">Selected Plan *</label>
+          <select id="memPlanSelect" required style="width:100%;padding:0.75rem;border-radius:6px;background:rgba(30,30,40,1);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);outline:none;font-size:0.9rem">
+            <option value="STARTER">STARTER — Rs. 3,500/mo</option>
+            <option value="PRO">PRO — Rs. 7,500/mo</option>
+            <option value="ELITE">ELITE — Rs. 14,000/mo</option>
+          </select>
+        </div>
+        <div class="form-group" style="text-align:left; margin-bottom:1rem">
+          <label style="display:block;margin-bottom:0.3rem;font-size:0.85rem;font-weight:500;color:var(--text-light)">Start Date *</label>
+          <input type="date" id="memStartDateInput" required style="width:100%;padding:0.75rem;border-radius:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);outline:none;font-size:0.9rem" />
+        </div>
+        <div class="form-group" style="text-align:left; margin-bottom:1.5rem">
+          <label style="display:block;margin-bottom:0.3rem;font-size:0.85rem;font-weight:500;color:var(--text-light)">Notes (optional)</label>
+          <textarea id="memNotesInput" placeholder="Any special requests?" style="width:100%;height:70px;padding:0.75rem;border-radius:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);outline:none;font-size:0.9rem;resize:none"></textarea>
+        </div>
+        <div style="display:flex;gap:1rem">
+          <button type="button" class="btn btn-ghost" onclick="closeMembershipModal()" style="flex:1">Cancel</button>
+          <button type="submit" class="btn btn-primary" style="flex:2">Submit Registration →</button>
+        </div>
+      </form>
     </div>
   </div>
 
