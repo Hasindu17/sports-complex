@@ -307,110 +307,158 @@
     </div>
   </section>
 
-  <!-- BOOKING SECTION -->
-   <!-- MEMBERSHIP SECTION -->
-<section class="sport-section" id="membership">
-  <div class="container">
-    <div class="section-label" style="text-align:center">MEMBERSHIP PLANS</div>
-    <h2 class="section-title" style="text-align:center">Choose Your Plan</h2>
-    <p style="text-align:center; color:var(--text-muted); margin-bottom:3rem; max-width:500px; margin-left:auto; margin-right:auto;">
-      Unlimited access to all facilities with one membership. No hidden fees.
-    </p>
-    <div class="membership-grid">
+  <!-- MEMBERSHIP -->
+  <section class="sport-section" id="membership">
+    <div class="container">
+      <div class="section-label" style="text-align:center">MEMBERSHIP PLANS</div>
+      <h2 class="section-title" style="text-align:center">Choose Your Plan</h2>
+      <p style="text-align:center;color:var(--text-muted);margin-bottom:3rem;max-width:500px;margin-left:auto;margin-right:auto;">
+        Unlimited access to all facilities with one membership. No hidden fees.
+      </p>
+      <div class="membership-grid">
 
-      <div class="membership-card">
-        <div class="mem-tag">STARTER</div>
-        <div class="mem-price">Rs. 3,500<span>/month</span></div>
-        <ul class="mem-features">
-          <li>✅ Badminton — 10 hrs/month</li>
-          <li>✅ Pool Tables — 8 hrs/month</li>
-          <li>✅ Swimming — 8 sessions/month</li>
-          <li>❌ Cricket Nets</li>
-          <li>❌ Coaching sessions</li>
-        </ul>
-        <a href="#booking" class="btn btn-ghost" style="width:100%; text-align:center; margin-top:1.5rem">Get Started</a>
+        <div class="membership-card">
+          <div class="mem-tag">STARTER</div>
+          <div class="mem-price">Rs. 3,500<span>/month</span></div>
+          <ul class="mem-features">
+            <li>✅ Badminton — 10 hrs/month</li>
+            <li>✅ Pool Tables — 8 hrs/month</li>
+            <li>✅ Swimming — 8 sessions/month</li>
+            <li>❌ Cricket Nets</li>
+            <li>❌ Coaching sessions</li>
+          </ul>
+          <a href="#booking" class="btn btn-ghost" style="width:100%;text-align:center;margin-top:1.5rem">Get Started</a>
+        </div>
+
+        <div class="membership-card membership-card--featured">
+          <div class="mem-badge">MOST POPULAR</div>
+          <div class="mem-tag">PRO</div>
+          <div class="mem-price">Rs. 7,500<span>/month</span></div>
+          <ul class="mem-features">
+            <li>✅ Badminton — Unlimited</li>
+            <li>✅ Pool Tables — Unlimited</li>
+            <li>✅ Swimming — Unlimited</li>
+            <li>✅ Cricket Nets — 10 hrs/month</li>
+            <li>❌ Coaching sessions</li>
+          </ul>
+          <a href="#booking" class="btn btn-primary" style="width:100%;text-align:center;margin-top:1.5rem">Get Started</a>
+        </div>
+
+        <div class="membership-card">
+          <div class="mem-tag">ELITE</div>
+          <div class="mem-price">Rs. 14,000<span>/month</span></div>
+          <ul class="mem-features">
+            <li>✅ All facilities — Unlimited</li>
+            <li>✅ Cricket Nets — Unlimited</li>
+            <li>✅ 4 Coaching sessions/month</li>
+            <li>✅ Guest passes (2/month)</li>
+            <li>✅ Priority booking</li>
+          </ul>
+          <a href="#booking" class="btn btn-ghost" style="width:100%;text-align:center;margin-top:1.5rem">Get Started</a>
+        </div>
+
       </div>
-
-      <div class="membership-card membership-card--featured">
-        <div class="mem-badge">MOST POPULAR</div>
-        <div class="mem-tag">PRO</div>
-        <div class="mem-price">Rs. 7,500<span>/month</span></div>
-        <ul class="mem-features">
-          <li>✅ Badminton — Unlimited</li>
-          <li>✅ Pool Tables — Unlimited</li>
-          <li>✅ Swimming — Unlimited</li>
-          <li>✅ Cricket Nets — 10 hrs/month</li>
-          <li>❌ Coaching sessions</li>
-        </ul>
-        <a href="#booking" class="btn btn-primary" style="width:100%; text-align:center; margin-top:1.5rem">Get Started</a>
-      </div>
-
-      <div class="membership-card">
-        <div class="mem-tag">ELITE</div>
-        <div class="mem-price">Rs. 14,000<span>/month</span></div>
-        <ul class="mem-features">
-          <li>✅ All facilities — Unlimited</li>
-          <li>✅ Cricket Nets — Unlimited</li>
-          <li>✅ 4 Coaching sessions/month</li>
-          <li>✅ Guest passes (2/month)</li>
-          <li>✅ Priority booking</li>
-        </ul>
-        <a href="#booking" class="btn btn-ghost" style="width:100%; text-align:center; margin-top:1.5rem">Get Started</a>
-      </div>
-
     </div>
-  </div>
-</section>
-  <!--<section class="booking" id="booking">
+  </section>
+
+  <!-- BOOKING -->
+  <section class="booking" id="booking">
     <div class="container">
       <div class="section-label" style="text-align:center">RESERVATIONS</div>
       <h2 class="section-title" style="text-align:center">Book Your Session</h2>
+      <p style="text-align:center;color:var(--text-muted);margin-bottom:3rem;max-width:520px;margin-left:auto;margin-right:auto;">
+        Select your facility, pick a date, then choose one or more time slots.
+      </p>
       <div class="booking-grid">
+
         <form class="booking-form" id="bookingForm" onsubmit="handleBooking(event)">
-          <div class="form-group">
-            <label>Full Name</label>
-            <input type="text" placeholder="Your name" required />
-          </div>
-          <div class="form-group">
-            <label>Phone / Email</label>
-            <input type="text" placeholder="Contact details" required />
-          </div>
-          <div class="form-group">
-            <label>Facility</label>
-            <select required>
-              <option value="">Select a facility</option>
-              <option>🏏 Indoor Cricket Net</option>
-              <option>🏸 Badminton Court</option>
-              <option>🎱 Pool Table</option>
-              <option>🏊 Swimming Pool</option>
-            </select>
-          </div>
+
           <div class="form-row">
             <div class="form-group">
-              <label>Date</label>
-              <input type="date" required />
+              <label>Full Name *</label>
+              <input type="text" id="nameInput" placeholder="Your name" required />
             </div>
             <div class="form-group">
-              <label>Time Slot</label>
-              <select required>
-                <option value="">Select time</option>
-                <option>6:00 AM – 7:00 AM</option>
-                <option>7:00 AM – 8:00 AM</option>
-                <option>8:00 AM – 9:00 AM</option>
-                <option>10:00 AM – 11:00 AM</option>
-                <option>2:00 PM – 3:00 PM</option>
-                <option>4:00 PM – 5:00 PM</option>
-                <option>6:00 PM – 7:00 PM</option>
-                <option>7:00 PM – 8:00 PM</option>
-              </select>
+              <label>Phone / Email *</label>
+              <input type="text" id="contactInput" placeholder="Contact details" required />
             </div>
           </div>
+
           <div class="form-group">
-            <label>Notes (optional)</label>
-            <textarea placeholder="Any special requirements?"></textarea>
+            <label>Facility *</label>
+            <select id="facilitySelect" required>
+              <option value="">Select a facility</option>
+              <option value="Indoor Cricket Net">🏏 Indoor Cricket Net</option>
+              <option value="Badminton Court">🏸 Badminton Court</option>
+              <option value="Pool Table">🎱 Pool Table</option>
+              <option value="Swimming Pool">🏊 Swimming Pool</option>
+            </select>
           </div>
+
+          <!-- CALENDAR + SLOTS SIDE BY SIDE -->
+          <div class="cal-slots-wrap">
+
+            <!-- LEFT: Calendar -->
+            <div class="cal-box">
+              <label class="field-label">Select Date *</label>
+              <div class="calendar">
+                <div class="cal-header">
+                  <button type="button" id="calPrev">&#8592;</button>
+                  <span id="calMonthYear"></span>
+                  <button type="button" id="calNext">&#8594;</button>
+                </div>
+                <div class="cal-days-header">
+                  <span>Su</span><span>Mo</span><span>Tu</span>
+                  <span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+                </div>
+                <div class="cal-days" id="calDays"></div>
+              </div>
+              <div id="selectedDateDisplay" class="selected-date-display" style="display:none">
+                📅 <strong id="selectedDateText"></strong>
+              </div>
+            </div>
+
+            <!-- RIGHT: Time Slots -->
+            <div class="slots-box">
+              <label class="field-label">Select Time Slots *</label>
+              <p class="slots-hint">Tap a slot to select it. Pick multiple for a longer session.</p>
+              <div id="slotPlaceholder" class="slot-placeholder">
+                👆 Select a facility and date first
+              </div>
+              <div id="slotGrid" class="slot-grid" style="display:none"></div>
+              <div id="slotLegend" class="slot-legend" style="display:none">
+                <span class="legend-item"><span class="legend-dot free"></span>Available</span>
+                <span class="legend-item"><span class="legend-dot booked"></span>Already booked</span>
+                <span class="legend-item"><span class="legend-dot selected"></span>Your selection</span>
+              </div>
+              <div id="slotCountSummary" class="slot-count-summary"></div>
+              <div id="slotError" class="slot-error" style="display:none">
+                ⚠️ Please select at least one time slot
+              </div>
+            </div>
+
+          </div>
+          <!-- END cal-slots-wrap -->
+
+          <!-- Selected slots summary -->
+          <div id="selectedSlotDisplay" class="selected-slots-summary" style="display:none">
+            <div class="summary-label">✅ Your selected slots</div>
+            <div id="selectedSlotList" class="summary-chips"></div>
+            <div id="selectedDuration" class="summary-duration"></div>
+          </div>
+
+          <input type="hidden" id="dateInput" />
+
+          <div class="form-group" style="margin-top:0.5rem">
+            <label>Notes (optional)</label>
+            <textarea id="notesInput" placeholder="Any special requirements?"></textarea>
+          </div>
+
           <button type="submit" class="btn btn-primary btn-full">Confirm Booking →</button>
+
         </form>
+
+        <!-- RIGHT SIDE INFO CARDS -->
         <div class="booking-info">
           <div class="binfo-card">
             <div class="binfo-icon">🕐</div>
@@ -430,17 +478,24 @@
             <p>123 Sports Boulevard</p>
             <p>Colombo 05, Sri Lanka</p>
           </div>
+          <div class="binfo-card" style="border-color:rgba(0,229,160,0.2);background:rgba(0,229,160,0.04)">
+            <div class="binfo-icon">⚡</div>
+            <h4>Instant Confirmation</h4>
+            <p>Slots confirmed in real-time. No double bookings — ever.</p>
+          </div>
         </div>
+
       </div>
     </div>
-  </section>--!>
+  </section>
 
   <!-- SUCCESS MODAL -->
   <div class="modal-overlay" id="modal">
     <div class="modal-box">
       <div class="modal-icon">✅</div>
       <h3>Booking Confirmed!</h3>
-      <p>We've received your request. Our team will contact you within 30 minutes to confirm your slot.</p>
+      <p id="modalSlotSummary" style="color:var(--accent);font-weight:600;margin-bottom:0.5rem"></p>
+      <p>Our team will contact you within 30 minutes to confirm your booking.</p>
       <button class="btn btn-primary" onclick="closeModal()">Great, Thanks!</button>
     </div>
   </div>
