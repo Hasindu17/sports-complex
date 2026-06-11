@@ -3,9 +3,10 @@ name: Build and Deploy Sports Complex
 # WHEN does this pipeline run?
 on:
   push:
-    branches: [ main ]      # Runs on every push to main branch
+    branches: [ main, develop ]      # Runs on every push to main or develop branch
   pull_request:
-    branches: [ main ]      # Also runs when someone opens a PR
+    branches: [ main, develop ]      # Also runs when someone opens a PR against main or develop
+
 
 jobs:
   # ── JOB 1: Build and test ──────────────────────────────────
